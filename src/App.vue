@@ -3,7 +3,8 @@
     <nav class="navbar navbar-dark bg-dark">
        <a class="navbar-brand">Galleries</a>
        <div class="navbar-nav mr-auto d-flex flex-row">
-        <router-link class="nav-link" to="/">All Galleries</router-link> 
+        <router-link class="nav-link" to="/">All Galleries</router-link> |
+        <router-link class="nav-link" to="/create">Create New Gallery</router-link>
       </div>
     </nav>
     <router-view/>
