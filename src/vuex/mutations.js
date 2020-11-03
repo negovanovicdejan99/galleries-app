@@ -1,3 +1,5 @@
-export const getters = {
-    
+export const mutations = {
+    setGalleries(state, payload) {
+        state.galleries = payload
+    }
 }
