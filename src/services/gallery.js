@@ -4,8 +4,10 @@ export default class GalleryService{
         axios.defaults.baseURL = 'http://localhost:8000/api'
     }
     getAll() {
-        console.log(axios.get('/galleries'))
         return axios.get('/galleries')
+    }
+    get(id) {
+        return axios.get(`/galleries/${id}`)
     }
 }
 

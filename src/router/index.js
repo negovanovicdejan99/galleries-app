@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import AllGalleries from '../components/AppAllGalleries'
 import CreateNewGallery from '../components/AppCreateNewGallery'
+import SingleGallery from '../components/AppSingleGallery'
 
 Vue.use(VueRouter)
 
@@ -19,6 +20,11 @@ const routes = [
     path: '/create',
     name: 'CreateNewGallery',
     component: CreateNewGallery
+  },
+  {
+    path: '/galleries/:id',
+    name: 'SingleGallery',
+    component: SingleGallery
   }
 ]
 

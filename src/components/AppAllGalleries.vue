@@ -3,17 +3,17 @@
         <h1>All Galleries:</h1>
         <hr>
         <div class="main-wrapper">
-            <SingleGalleryCard v-for="gallery in galleries" :key="gallery.id" :gallery="gallery" />
+            <GalleryCard v-for="gallery in galleries" :key="gallery.id" :gallery="gallery" />
         </div>
     </div>
 </template>
 
 <script>
-import SingleGalleryCard from './SingleGalleryCard'
+import GalleryCard from './GalleryCard'
 import {mapActions, mapGetters} from 'vuex'
 export default {
     components: {
-        SingleGalleryCard
+        GalleryCard
     },
     computed: {
         ...mapGetters([
