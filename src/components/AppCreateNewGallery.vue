@@ -12,15 +12,16 @@
                     <label for="description">Description:</label>
                     <input type="text" class="form-control" id="description" placeholder="Enter description...">
                 </div>
-                <div class="form-group">
+                <div v-for="(image, index) in form.images" :key="index" class="form-group">
                     <p>Image Url:</p>
-                <div clas="url-input-wrapper" id="url-input-wrapper">
+                    <div clas="url-input-wrapper" id="url-input-wrapper">
                         <div>
                             <input type="text" class="form-control" style="marginBottom: 10px" id="imageUrl" placeholder="Enter imageUrl...">
+                            <button type="button" v-on:click="moveUp">Move up</button>
                         </div>
                     </div>
-                    <button class="btn btn-secondary" type="button" @click="addAnotherUrlInput">Add another URL</button>
                 </div>
+                <button class="btn btn-secondary" type="button" v-on:click="addAnotherUrlInput">Add another URL</button>
                 
                 <button class="btn btn-primary">Create</button>
             </form>
@@ -30,8 +31,26 @@
 
 <script>
 export default {
+     data() {
+        return {
+            form: {
+                title: '',
+                description: '',
+                images: [ { url: ''} ]
+            }
+        }
+    },
+    methods: {
+       
+        handleCreateNewGallerySubmit() {
+            console.log('create')
+        },
+        addAnotherUrlInput() {
+            this.form.images.push({url: ''})
+        },
+        moveUp() {
+            console.log('Move up')
+        }
+    }
 }
 </script>
-
-<style scoped>
-</style>
