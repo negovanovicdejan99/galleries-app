@@ -13,5 +13,8 @@ export default class AuthService{
             }
         })
     }
+    register(user) {
+        return axios.post('/register', user)
+    }
 }
 export const authService = new AuthService();

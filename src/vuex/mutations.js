@@ -11,7 +11,4 @@ export const mutations = {
     setToken(state, payload) {
         localStorage.setItem('token', payload)
     },
-    setIsAuthorized(state, payload) {
-        state.isAuthorized = payload
-    }
 }

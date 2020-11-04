@@ -11,7 +11,7 @@ export const store = new Vuex.Store({
         galleries: [],
         singleGallery: {},
         author: {},
-        isAuthorized: false
+        token: localStorage.getItem('token'),
     },
     getters,
     mutations,

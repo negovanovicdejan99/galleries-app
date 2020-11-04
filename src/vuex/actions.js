@@ -17,14 +17,19 @@ export const actions = {
         try {
             await authService.login(payload).then(response => 
                 state.commit('setToken', response.data.token))
-                state.commit('setIsAuthorized', true)
         }catch (error) {
             return error.response.data.message;
         }
     },
-    async logoutUser(state) {
+    async logoutUser() {
         await authService.logout()
         localStorage.removeItem('token')
-        state.commit('setIsAuthorized', false)
     },
+    async registerUser(state, payload){
+        try {
+            await authService.register(payload)
+        }catch (error) {
+            return error.response.data.errors;
+        }
+    }
 }

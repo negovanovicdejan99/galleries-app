@@ -6,8 +6,9 @@
         <router-link class="nav-link" to="/">All Galleries</router-link> |
         <router-link class="nav-link" to="/create">Create New Gallery</router-link>
       </div>
-      <router-link class="navbar-brand" v-if="!isAuthorized" to="/login">Login</router-link>
-      <router-link class="navbar-brand" v-else to="/login" @click.native="logout">Logout</router-link>
+      <router-link class="navbar-brand" v-if="!isUserAuthenticated" to="/login">Login</router-link>
+      <router-link class="navbar-brand" v-if="!isUserAuthenticated" to="/register">Register</router-link>
+      <router-link class="navbar-brand" v-else to="/login" @click.native="logoutUser">Logout</router-link>
     </nav>
     <router-view/>
   </div>
@@ -18,16 +19,13 @@ import {mapActions, mapGetters} from 'vuex'
 export default {
   computed: {
     ...mapGetters([
-      'isAuthorized'
+      'isUserAuthenticated'
     ])
   },
   methods: {
     ...mapActions([
       'logoutUser',
     ]),
-    async logout() {
-      await this.logoutUser();
-    },
   },
 }
 </script>

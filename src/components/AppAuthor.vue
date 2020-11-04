@@ -1,6 +1,6 @@
 <template>
   <div>
-        <h1>{{author.name}}</h1>
+        <h1>{{author.first_name}} {{author.last_name}}</h1>
         <p>{{author.email}}</p>
         <hr>
         <div class="card-main-wrapper">
