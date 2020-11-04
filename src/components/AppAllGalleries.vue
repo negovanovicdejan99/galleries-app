@@ -48,10 +48,12 @@ li {
 a {
   color: #42b983;
 }
-.main-wrapper {
-    width: 60%;
-    margin-left: auto;
-    margin-right: auto;
+.main-wrapper {   
+  width: 90%;    
+  display: flex;    
+  flex-wrap: wrap;    
+  margin-left: auto;    
+  margin-right: auto;
 }
 
 </style>

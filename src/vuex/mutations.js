@@ -4,5 +4,8 @@ export const mutations = {
     },
     setSingleGallery(state, payload) {
         state.singleGallery = payload
+    },
+    setAuthor(state, payload) {
+        state.author = payload
     }
 }

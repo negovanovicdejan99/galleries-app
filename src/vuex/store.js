@@ -10,6 +10,7 @@ export const store = new Vuex.Store({
     state: {
         galleries: [],
         singleGallery: {},
+        author: {},
     },
     getters,
     mutations,

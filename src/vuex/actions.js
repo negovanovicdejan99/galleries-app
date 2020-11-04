@@ -7,5 +7,9 @@ export const actions = {
     async getSingleGallery(state, payload) {
         const response = await galleryService.get(payload);
         state.commit('setSingleGallery', response.data)
+    },
+    async getAuthor(state, payload) {
+        const response = await galleryService.getAuthor(payload);
+        state.commit('setAuthor', response.data)
     }
 }
