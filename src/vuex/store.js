@@ -11,6 +11,7 @@ export const store = new Vuex.Store({
         galleries: [],
         singleGallery: {},
         author: {},
+        isAuthorized: false
     },
     getters,
     mutations,

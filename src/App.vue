@@ -6,11 +6,31 @@
         <router-link class="nav-link" to="/">All Galleries</router-link> |
         <router-link class="nav-link" to="/create">Create New Gallery</router-link>
       </div>
+      <router-link class="navbar-brand" v-if="!isAuthorized" to="/login">Login</router-link>
+      <router-link class="navbar-brand" v-else to="/login" @click.native="logout">Logout</router-link>
     </nav>
     <router-view/>
   </div>
 </template>
 
+<script>
+import {mapActions, mapGetters} from 'vuex'
+export default {
+  computed: {
+    ...mapGetters([
+      'isAuthorized'
+    ])
+  },
+  methods: {
+    ...mapActions([
+      'logoutUser',
+    ]),
+    async logout() {
+      await this.logoutUser();
+    },
+  },
+}
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
