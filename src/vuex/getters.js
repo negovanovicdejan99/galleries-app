@@ -5,4 +5,5 @@ export const getters = {
     isUserAuthenticated(state) {
         return !!state.token
     },
+    authUser: ({authUser}) => authUser,
 }

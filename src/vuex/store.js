@@ -12,6 +12,7 @@ export const store = new Vuex.Store({
         singleGallery: {},
         author: {},
         token: localStorage.getItem('token'),
+        authUser: {},
     },
     getters,
     mutations,

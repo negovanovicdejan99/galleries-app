@@ -12,6 +12,9 @@ export default class GalleryService{
     getAuthor(id) {
         return axios.get(`/author/${id}`)
     }
+    getMyGalleries() {
+        return axios.get('/my-galleries')
+    }
 }
 
 export const galleryService = new GalleryService();

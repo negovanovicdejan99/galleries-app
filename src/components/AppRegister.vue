@@ -62,7 +62,7 @@ export default {
         async handleRegisterSubmit() {
             this.errors = await this.registerUser(this.user);
             if(!this.errors) {
-                this.$router.push('/login')
+                this.$router.push('/')
             }
         }
     }

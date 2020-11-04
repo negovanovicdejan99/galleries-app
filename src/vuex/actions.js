@@ -27,9 +27,14 @@ export const actions = {
     },
     async registerUser(state, payload){
         try {
-            await authService.register(payload)
+            await authService.register(payload).then(response => 
+                state.commit('setToken', response.data.token))
         }catch (error) {
             return error.response.data.errors;
         }
-    }
+    },
+    async getAuthUser(state) {
+        await authService.authUser().then(response => 
+            state.commit('setAuthUser', response.data))
+    },
 }

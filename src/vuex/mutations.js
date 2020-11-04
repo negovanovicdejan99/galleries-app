@@ -11,4 +11,7 @@ export const mutations = {
     setToken(state, payload) {
         localStorage.setItem('token', payload)
     },
+    setAuthUser(state, payload) {
+        state.authUser = payload
+    }
 }
