@@ -4,8 +4,8 @@
        <a class="navbar-brand">Galleries</a>
        <div class="navbar-nav mr-auto d-flex flex-row">
         <router-link class="nav-link" to="/">All Galleries</router-link> |
-        <router-link class="nav-link" to="/create">Create New Gallery</router-link> |
-        <router-link class="nav-link" to="/my-galleries">My Galleries</router-link>
+        <router-link class="nav-link" v-if="isUserAuthenticated" to="/create">Create New Gallery</router-link> |
+        <router-link class="nav-link" v-if="isUserAuthenticated" to="/my-galleries">My Galleries</router-link>
       </div>
       <router-link class="navbar-brand" v-if="!isUserAuthenticated" to="/login">Login</router-link>
       <router-link class="navbar-brand" v-if="!isUserAuthenticated" to="/register">Register</router-link>

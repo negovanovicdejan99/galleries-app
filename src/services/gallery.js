@@ -1,8 +1,6 @@
 import axios from 'axios'
-export default class GalleryService{
-    constructor() {
-        axios.defaults.baseURL = 'http://localhost:8000/api'
-    }
+import Service from './service'
+export default class GalleryService extends Service{
     getAll() {
         return axios.get('/galleries')
     }
@@ -14,6 +12,16 @@ export default class GalleryService{
     }
     getMyGalleries() {
         return axios.get('/my-galleries')
+    }
+    createNewGallery(gallery) {
+        return axios.post('/galleries', gallery)
+    }
+    createComment(comment) {
+        const body = comment.body
+        return axios.post(`/galleries/${comment.post_id}/comments`, {body}) 
+    }
+    deleteComment(id) {
+        return axios.delete(`/delete-comment/${id}`) 
     }
 }
 

@@ -8,7 +8,7 @@
                 <div class="card" v-for="(gallery, index) in authUser.galleries" :key="index">
                     <h3 class="card-title"><router-link class="text-dark" :to="{ path: `/galleries/${gallery.id}`}">{{gallery.title}}</router-link></h3>
                     <p class="card-text">Created at: {{gallery.created_at}}</p>
-                    <img class="card-img" :src="gallery.gallery_images[0].url" alt="Card image cap">
+                    <img class="card-img" v-if="gallery.gallery_images[0]" :src="gallery.gallery_images[0].url" alt="Card image cap">
                 </div>
             </div>
         </div>

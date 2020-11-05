@@ -37,4 +37,25 @@ export const actions = {
         await authService.authUser().then(response => 
             state.commit('setAuthUser', response.data))
     },
+    async getCreateNewGallery(state, payload) {
+        try {
+            await galleryService.createNewGallery(payload)
+        }catch (error) {
+            return error.response.data.errors;
+        }
+    },
+    async getCreateComment(state, payload) {
+        try {
+            await galleryService.createComment(payload)
+        }catch (error) {
+            return error.response.data.errors;
+        }
+    },
+    async getDeleteComment(state, payload) {
+        try {
+            await galleryService.deleteComment(payload)
+        }catch (error) {
+            return error.response.data.errors;
+        }
+    },
 }
