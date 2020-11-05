@@ -58,4 +58,7 @@ export const actions = {
             return error.response.data.errors;
         }
     },
+    async getDeleteGallery(state, payload) {
+        await galleryService.deleteGallery(payload);
+    },
 }

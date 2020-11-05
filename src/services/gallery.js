@@ -16,6 +16,9 @@ export default class GalleryService extends Service{
     createNewGallery(gallery) {
         return axios.post('/galleries', gallery)
     }
+    deleteGallery(id) {
+        return axios.delete(`/galleries/${id}`)
+    }
     createComment(comment) {
         const body = comment.body
         return axios.post(`/galleries/${comment.post_id}/comments`, {body}) 

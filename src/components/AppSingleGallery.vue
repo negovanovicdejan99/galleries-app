@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>{{singleGallery.title}}</h1>
+    <button class="btn btn-danger" v-if="authUser.id == singleGallery.user.id" @click="handleDeleteGallery">Delete</button>
     <p class="card-text">Author: <router-link class="text-dark" :to="{ path: `/author/${singleGallery.user.id}`}">{{singleGallery.user.first_name}} {{singleGallery.user.last_name}}</router-link></p>
     <p>Created at: {{singleGallery.created_at}}</p>
     <b-carousel
@@ -62,7 +63,8 @@ export default {
       'getSingleGallery',
       'getCreateComment',
       'getAuthUser',
-      'getDeleteComment'
+      'getDeleteComment',
+      'getDeleteGallery'
     ]),
      async handleAddComment() {
       this.error = await this.getCreateComment(this.comment).then(
@@ -77,7 +79,13 @@ export default {
       await this.getDeleteComment(id).then(
           this.getSingleGallery(this.$route.params.id)
       )
-    }
+    },
+    handleDeleteGallery() {
+      if(confirm('Do you really want to delete?')){
+        this.getDeleteGallery(this.$route.params.id)
+        this.$router.push('/my-galleries')
+      }
+    },
   },
   computed: {
     ...mapGetters([
