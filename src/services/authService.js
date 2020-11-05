@@ -16,5 +16,8 @@ export default class AuthService{
     authUser() {
         return axios.get('/auth-user')
     }
+    authUserGallery() {
+        return axios.get('/auth-user-gallery')
+    }
 }
 export const authService = new AuthService();

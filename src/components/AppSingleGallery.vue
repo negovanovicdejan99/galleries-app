@@ -1,7 +1,9 @@
 <template>
   <div>
     <h1>{{singleGallery.title}}</h1>
+    <button class="btn btn-primary" v-if="authUser.id == singleGallery.user.id" @click="handleEditGallery">Edit</button>
     <button class="btn btn-danger" v-if="authUser.id == singleGallery.user.id" @click="handleDeleteGallery">Delete</button>
+    
     <p class="card-text">Author: <router-link class="text-dark" :to="{ path: `/author/${singleGallery.user.id}`}">{{singleGallery.user.first_name}} {{singleGallery.user.last_name}}</router-link></p>
     <p>Created at: {{singleGallery.created_at}}</p>
     <b-carousel
@@ -86,6 +88,9 @@ export default {
         this.$router.push('/my-galleries')
       }
     },
+    handleEditGallery() {
+      this.$router.push(`/edit-gallery/${this.$route.params.id}`)
+    }
   },
   computed: {
     ...mapGetters([

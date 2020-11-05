@@ -1,12 +1,12 @@
 <template>
   <div>
-        <h1>{{author.first_name}} {{author.last_name}}</h1>
-        <p>{{author.email}}</p>
+        <h1>{{authUserGallery.first_name}} {{authUserGallery.last_name}}</h1>
+        <p>{{authUserGallery.email}}</p>
         <hr>
         <div>
         <div class="card-main-wrapper">
             <div class="card-wrapper">
-                <div class="card" v-for="(gallery, index) in author.galleries" :key="index">
+                <div class="card" v-for="(gallery, index) in authUserGallery.galleries" :key="index">
                     <h3 class="card-title"><router-link class="text-dark" :to="{ path: `/galleries/${gallery.id}`}">{{gallery.title}}</router-link></h3>
                     <p class="card-text">Created at: {{gallery.created_at}}</p>
                     <img class="card-img" v-if="gallery.gallery_images[0]" :src="gallery.gallery_images[0].url" alt="Card image cap">
@@ -22,17 +22,17 @@ import {mapActions, mapGetters} from 'vuex'
 export default {
     methods: {
         ...mapActions([
-            'getAuthor'
+            'getAuthUserGallery'
         ]),
     },
     computed: {
         ...mapGetters([
-            'author'
+            'authUserGallery'
         ])
     },
     beforeRouteEnter (to, from, next) {
         next(vm => {
-            vm.getAuthor(vm.$route.params.id)
+            vm.getAuthUserGallery(vm.$route.params.id)
         })
     }
 }

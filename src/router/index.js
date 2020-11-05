@@ -7,6 +7,7 @@ import Author from '../components/AppAuthor'
 import Login from '../components/AppLogin'
 import Register from '../components/AppRegister'
 import MyGalleries from '../components/AppMyGalleries'
+import EditGallery from '../components/AppEditGallery'
 
 Vue.use(VueRouter)
 
@@ -49,6 +50,11 @@ const routes = [
     path: '/my-galleries',
     name: 'MyGalleries',
     component: MyGalleries
+  },
+  {
+    path: '/edit-gallery/:id',
+    name: 'EditGallery',
+    component: EditGallery
   },
 ]
 

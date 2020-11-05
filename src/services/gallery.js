@@ -1,8 +1,12 @@
 import axios from 'axios'
 import Service from './service'
 export default class GalleryService extends Service{
-    getAll() {
-        return axios.get('/galleries')
+    getAll(payload) {
+        return axios.get('/galleries', {
+            headers: {
+            'numOfGalleries': payload
+            }
+        })
     }
     get(id) {
         return axios.get(`/galleries/${id}`)
@@ -15,6 +19,9 @@ export default class GalleryService extends Service{
     }
     createNewGallery(gallery) {
         return axios.post('/galleries', gallery)
+    }
+    editGallery(payload) {
+        return axios.put(`/edit-gallery/${payload[1]}`, payload[0])
     }
     deleteGallery(id) {
         return axios.delete(`/galleries/${id}`)

@@ -5,15 +5,23 @@
         <div class="main-wrapper">
             <GalleryCard v-for="gallery in galleries" :key="gallery.id" :gallery="gallery" />
         </div>
+        <button class="btn btn-primary" style="marginBottom: 15px" @click="loadMoreGalleries">Load More</button>
     </div>
 </template>
 
 <script>
 import GalleryCard from './GalleryCard'
 import {mapActions, mapGetters} from 'vuex'
+
 export default {
     components: {
         GalleryCard
+    },
+    data() {
+        return {
+            pagination : 10,
+            currentSize: 10
+        }
     },
     computed: {
         ...mapGetters([
@@ -24,10 +32,14 @@ export default {
         ...mapActions([
             'getGalleries'
         ]),
+        loadMoreGalleries() {
+            this.currentSize += this.pagination
+            this.getGalleries(this.currentSize)
+        }
     },
     beforeRouteEnter(to, from, next) {
         next(vm => {
-            vm.getGalleries();
+            vm.getGalleries(10);
         })
     }
 }

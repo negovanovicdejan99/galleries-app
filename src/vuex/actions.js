@@ -1,8 +1,8 @@
 import {galleryService} from '../services/gallery'
 import {authService} from '../services/authService'
 export const actions = {
-    async getGalleries(state) {
-        const response = await galleryService.getAll();
+    async getGalleries(state, payload) {
+        const response = await galleryService.getAll(payload);
         state.commit('setGalleries', response.data)
     },
     async getSingleGallery(state, payload) {
@@ -37,9 +37,20 @@ export const actions = {
         await authService.authUser().then(response => 
             state.commit('setAuthUser', response.data))
     },
+    async getAuthUserGallery(state) {
+        await authService.authUserGallery().then(response => 
+            state.commit('setAuthUserGallery', response.data))
+    },
     async getCreateNewGallery(state, payload) {
         try {
             await galleryService.createNewGallery(payload)
+        }catch (error) {
+            return error.response.data.errors;
+        }
+    },
+    async getEditGallery(state, payload) {
+        try {
+            await galleryService.editGallery(payload)
         }catch (error) {
             return error.response.data.errors;
         }
@@ -61,4 +72,7 @@ export const actions = {
     async getDeleteGallery(state, payload) {
         await galleryService.deleteGallery(payload);
     },
+    removeToken() {
+        localStorage.removeItem('token')
+    }
 }

@@ -2,8 +2,7 @@ export const getters = {
     galleries: ({galleries}) => galleries,
     singleGallery: ({singleGallery}) => singleGallery,
     author: ({author}) => author,
-    isUserAuthenticated(state) {
-        return !!state.token
-    },
+    token (){return localStorage.getItem('token')},
     authUser: ({authUser}) => authUser,
+    authUserGallery: ({authUserGallery}) => authUserGallery,
 }

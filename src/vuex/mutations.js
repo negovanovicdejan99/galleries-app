@@ -13,5 +13,8 @@ export const mutations = {
     },
     setAuthUser(state, payload) {
         state.authUser = payload
-    }
+    },
+    setAuthUserGallery(state, payload) {
+        state.authUserGallery = payload
+    },
 }
