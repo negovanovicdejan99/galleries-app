@@ -32,6 +32,7 @@
                 <p v-if="errors.images" class="text-danger">{{errors.first_name[0]}}</p>
                 </div>
                 <button class="btn btn-primary">Create</button>
+                <button type="button" class="btn btn-danger" @click="cancelCreateGallery">Cancel</button>
             </form>
         </div>
     </div>
@@ -74,6 +75,9 @@ export default {
             if(this.gallery.images.length > 1) {
             this.gallery.images.splice(index, 1)
             }
+        },
+        cancelCreateGallery() {
+            this.$router.push('/galleries')
         }
     }
 }

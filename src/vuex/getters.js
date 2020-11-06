@@ -5,4 +5,5 @@ export const getters = {
     token (){return localStorage.getItem('token')},
     authUser: ({authUser}) => authUser,
     authUserGallery: ({authUserGallery}) => authUserGallery,
+    numberOfGalleries: ({numberOfGalleries}) => numberOfGalleries,
 }

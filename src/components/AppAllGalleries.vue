@@ -1,31 +1,42 @@
 <template>
     <div>
+        <div class="d-flex justify-content-center">
+            <GallerySearch @handleSearchText="setSearchText"/>
+        </div>
         <h1>All Galleries:</h1>
         <hr>
-        <div class="main-wrapper">
-            <GalleryCard v-for="gallery in galleries" :key="gallery.id" :gallery="gallery" />
+        <div v-if="!galleries.length">
+            <h3>There is no galleries!</h3>
         </div>
-        <button class="btn btn-primary" style="marginBottom: 15px" @click="loadMoreGalleries">Load More</button>
+        <div v-else>
+            <div class="main-wrapper">
+                <GalleryCard v-for="gallery in galleries" :key="gallery.id" :gallery="gallery" />
+            </div>
+            <button class="btn btn-primary" style="marginBottom: 15px" v-if="currentSize <= numberOfGalleries" @click="loadMoreGalleries">Load More</button>
+        </div>
     </div>
 </template>
 
 <script>
+import GallerySearch from './GallerySearch'
 import GalleryCard from './GalleryCard'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
     components: {
-        GalleryCard
+        GalleryCard,
+        GallerySearch
     },
     data() {
         return {
-            pagination : 10,
-            currentSize: 10
+            currentSize: 10,
+            searchText: ''
         }
     },
     computed: {
         ...mapGetters([
-            'galleries'
+            'galleries',
+            'numberOfGalleries'
         ]),
     },
     methods: {
@@ -33,13 +44,17 @@ export default {
             'getGalleries'
         ]),
         loadMoreGalleries() {
-            this.currentSize += this.pagination
-            this.getGalleries(this.currentSize)
+            this.currentSize += 10
+            this.getGalleries({'pagination': this.currentSize, 'searchText': this.searchText})
+        },
+        setSearchText(search) {
+            this.searchText = search
+            this.getGalleries({'pagination': this.currentSize, 'searchText': this.searchText})
         }
     },
     beforeRouteEnter(to, from, next) {
         next(vm => {
-            vm.getGalleries(10);
+            vm.getGalleries({'pagination':10, 'searchText': ''});
         })
     }
 }

@@ -32,7 +32,7 @@
             <button class="btn btn-danger" v-if="authUser.id == comment.user_id" @click="handleDeleteComment(comment.id)">Delete</button>
           </div>
         </div>
-        <div>
+        <div v-if="token">
           <form @submit.prevent="handleAddComment" v-if="canComment">
             <div class="form-group">
               <label for="addComment">Add comment:</label>
@@ -66,7 +66,8 @@ export default {
       'getCreateComment',
       'getAuthUser',
       'getDeleteComment',
-      'getDeleteGallery'
+      'getDeleteGallery',
+      'getToken'
     ]),
      async handleAddComment() {
       this.error = await this.getCreateComment(this.comment).then(
@@ -95,13 +96,17 @@ export default {
   computed: {
     ...mapGetters([
       'singleGallery',
-      'authUser'
+      'authUser',
+      'token'
     ]),
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
       vm.getSingleGallery(vm.$route.params.id)
-      vm.getAuthUser()
+      if(localStorage.getItem('token')){
+        vm.getAuthUser()
+      }
+      
     })
   }
 }

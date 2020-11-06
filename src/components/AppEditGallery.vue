@@ -2,6 +2,8 @@
     <div>
         <h1>Edit your gallery:</h1>
         <hr>
+        <h3 v-if="authUser.id !== singleGallery.user_id">This isnt your gallery!</h3>
+        <div v-else>
         <div class="d-flex justify-content-center">
             <form @submit.prevent="handleEditGallerySubmit" style="width: 80%">
                 <div class="form-group">
@@ -35,6 +37,7 @@
                 <button type="button" class="btn btn-danger" @click="cancelEdit">Cancel</button>
             </form>
         </div>
+        </div>
     </div>
 </template>
 
@@ -51,16 +54,18 @@ export default {
     },
     computed: {
         ...mapGetters([
-            'authUser'
+            'authUser',
+            'singleGallery'
         ])
     },
     methods: {
         ...mapActions([
             'getAuthUser',
-            'getEditGallery'
+            'getEditGallery',
+            'getSingleGallery'
         ]),
         async handleEditGallerySubmit() {
-            this.errors = await this.getEditGallery([this.gallery, this.$route.params.id]);
+            this.errors = await this.getEditGallery({'gallery':this.gallery, 'id':this.$route.params.id});
             if(!this.errors) {
                 this.$router.push(`/galleries/${this.$route.params.id}`)
             }
@@ -85,6 +90,7 @@ export default {
     beforeRouteEnter (to, from, next) {
         next(vm => {
             vm.getAuthUser()
+            vm.getSingleGallery(vm.$route.params.id)
         })
     }
 }

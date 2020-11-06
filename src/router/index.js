@@ -24,37 +24,54 @@ const routes = [
   {
     path: '/create',
     name: 'CreateNewGallery',
-    component: CreateNewGallery
+    component: CreateNewGallery,
+    meta: { isAuthRequired: true }
   },
   {
     path: '/galleries/:id',
     name: 'SingleGallery',
-    component: SingleGallery
+    component: SingleGallery,
   },
   {
     path: '/author/:id',
     name: 'Author',
-    component: Author
+    component: Author,
   },
   {
     path: '/login',
     name: 'Login',
-    component: Login
+    component: Login,
+    beforeEnter: (to, from, next) => {
+      if(localStorage.getItem('token')) {
+        next('/galleries');
+      }else {
+        next();
+      }
+    },
   },
   {
     path: '/register',
     name: 'Register',
-    component: Register
+    component: Register,
+    beforeEnter: (to, from, next) => {
+      if(localStorage.getItem('token')) {
+        next('/galleries');
+      }else {
+        next();
+      }
+    },
   },
   {
     path: '/my-galleries',
     name: 'MyGalleries',
-    component: MyGalleries
+    component: MyGalleries,
+    meta: { isAuthRequired: true }
   },
   {
     path: '/edit-gallery/:id',
     name: 'EditGallery',
-    component: EditGallery
+    component: EditGallery,
+    meta: { isAuthRequired: true }
   },
 ]
 
@@ -62,6 +79,14 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  if(to.meta.isAuthRequired && !localStorage.getItem('token')) {
+    next('/galleries');
+  } else {
+    next();
+  }
 })
 
 export default router

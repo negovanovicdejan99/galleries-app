@@ -4,7 +4,8 @@ export default class GalleryService extends Service{
     getAll(payload) {
         return axios.get('/galleries', {
             headers: {
-            'numOfGalleries': payload
+            'pagination': payload.pagination,
+            'searchText': payload.searchText
             }
         })
     }
@@ -21,7 +22,7 @@ export default class GalleryService extends Service{
         return axios.post('/galleries', gallery)
     }
     editGallery(payload) {
-        return axios.put(`/edit-gallery/${payload[1]}`, payload[0])
+        return axios.put(`/edit-gallery/${payload.id}`, payload.gallery)
     }
     deleteGallery(id) {
         return axios.delete(`/galleries/${id}`)
