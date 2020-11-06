@@ -6,8 +6,10 @@ export const mutations = {
     setSingleGallery(state, payload) {
         state.singleGallery = payload
     },
-    setAuthor(state, payload) {
-        state.author = payload
+    setAuthorGalleries(state, payload) {
+        state.author = payload[0]
+        state.authorGalleries = payload[1]
+        state.numberOfGalleries = payload[2]
     },
     setToken(state, payload) {
         localStorage.setItem('token', payload)
@@ -15,7 +17,9 @@ export const mutations = {
     setAuthUser(state, payload) {
         state.authUser = payload
     },
-    setAuthUserGallery(state, payload) {
-        state.authUserGallery = payload
+    setAuthUserGalleries(state, payload) {
+        state.authUser = payload[0]
+        state.authUserGalleries = payload[1]
+        state.numberOfGalleries = payload[2]
     },
 }

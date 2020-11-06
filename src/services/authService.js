@@ -16,8 +16,13 @@ export default class AuthService{
     authUser() {
         return axios.get('/auth-user')
     }
-    authUserGallery() {
-        return axios.get('/auth-user-gallery')
+    authUserGalleries(payload) {
+        return axios.get('/auth-user-gallery', {
+            headers: {
+            'pagination': payload.pagination,
+            'searchText': payload.searchText
+            }
+        })
     }
 }
 export const authService = new AuthService();

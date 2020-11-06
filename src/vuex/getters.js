@@ -1,9 +1,10 @@
 export const getters = {
     galleries: ({galleries}) => galleries,
     singleGallery: ({singleGallery}) => singleGallery,
-    author: ({author}) => author,
+    authorGalleries: ({authorGalleries}) => authorGalleries,
     token (){return localStorage.getItem('token')},
     authUser: ({authUser}) => authUser,
-    authUserGallery: ({authUserGallery}) => authUserGallery,
+    authUserGalleries: ({authUserGalleries}) => authUserGalleries,
     numberOfGalleries: ({numberOfGalleries}) => numberOfGalleries,
+    author: ({author}) => author,
 }

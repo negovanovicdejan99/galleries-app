@@ -9,9 +9,9 @@ export const actions = {
         const response = await galleryService.get(payload);
         state.commit('setSingleGallery', response.data)
     },
-    async getAuthor(state, payload) {
-        const response = await galleryService.getAuthor(payload);
-        state.commit('setAuthor', response.data)
+    async getAuthorGalleries(state, payload) {
+        const response = await galleryService.getAuthorGalleries(payload);
+        state.commit('setAuthorGalleries', response.data)
     },
     async loginUser(state, payload){
         try {
@@ -37,9 +37,9 @@ export const actions = {
         await authService.authUser().then(response => 
             state.commit('setAuthUser', response.data))
     },
-    async getAuthUserGallery(state) {
-        await authService.authUserGallery().then(response => 
-            state.commit('setAuthUserGallery', response.data))
+    async getAuthUserGalleries(state, payload) {
+        await authService.authUserGalleries(payload).then(response => 
+            state.commit('setAuthUserGalleries', response.data))
     },
     async getCreateNewGallery(state, payload) {
         try {

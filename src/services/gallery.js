@@ -12,8 +12,13 @@ export default class GalleryService extends Service{
     get(id) {
         return axios.get(`/galleries/${id}`)
     }
-    getAuthor(id) {
-        return axios.get(`/author/${id}`)
+    getAuthorGalleries(payload) {
+        return axios.get(`/author/${payload.id}`, {
+            headers: {
+            'pagination': payload.pagination,
+            'searchText': payload.searchText
+            }
+        })
     }
     getMyGalleries() {
         return axios.get('/my-galleries')

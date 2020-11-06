@@ -48,15 +48,15 @@ export default {
             this.getGalleries({'pagination': this.currentSize, 'searchText': this.searchText})
         },
         setSearchText(search) {
-            this.searchText = search
-            this.getGalleries({'pagination': this.currentSize, 'searchText': this.searchText})
+                this.searchText = search
+                this.getGalleries({'pagination': this.currentSize, 'searchText': this.searchText})
+            }
+        },
+        beforeRouteEnter(to, from, next) {
+            next(vm => {
+                vm.getGalleries({'pagination':10, 'searchText': ''});
+            })
         }
-    },
-    beforeRouteEnter(to, from, next) {
-        next(vm => {
-            vm.getGalleries({'pagination':10, 'searchText': ''});
-        })
-    }
 }
 </script>
 
